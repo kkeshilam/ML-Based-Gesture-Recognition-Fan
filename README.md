@@ -31,6 +31,27 @@ It uses two microcontrollers:
 
 ---
 
+## 📂 Workflow
+1. Data Collection
+Collected hand motion gestures using Seeed Studio XIAO’s IMU
+Labeled gestures: Fan_ON, Fan_OFF, Speed_Up, Speed_Down, Light_ON, Light_OFF
+
+2. Model Training
+Preprocessed accelerometer + gyro data
+Trained a classification model
+Exported to TensorFlow Lite (.tflite)
+Converted into a C header file (tflite.h)
+
+3. Firmware
+Integrated tflite.h into custom Arduino library
+Seeed board runs inference, sends predictions over Bluetooth
+
+4.Control Logic
+Nano 33 BLE Sense Rev 2 receives predictions
+Matches gesture class → toggles corresponding digital pins
+
+---
+
 ## 🧩 System Architecture
 
 ```
